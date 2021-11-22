@@ -38,6 +38,11 @@ public class Posts { // 실제 DB 테이블과 매칭될 클래스 Entity class�
         this.content = content;
         this.author = author;
     }
+
+    public void update(String title, String content){
+        this.title = title;
+        this.content = content;
+    }
     /*
     빌더 패턴
     만일 어떤 메소드에 set으로 담아야되는값이 3개가 있었는데 4개로 늘었다고 하면 기존과 같이
