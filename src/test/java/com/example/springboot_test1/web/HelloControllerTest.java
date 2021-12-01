@@ -12,7 +12,10 @@ import org.junit.runner.RunWith;
 import static org.hamcrest.Matchers.is;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -20,6 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@MockBean(JpaMetamodelMappingContext.class) // test중에 데이터베이스를 사용하지 않아서 스프링이 발생시키는 예외 , mockBean annotation추가해 주면됨.
 @RunWith(SpringRunner.class) // 테스트를 진행할때 Junit에 내장된 다른 실행자 실행 (SpringRunner 라는 실행자 사용)
 @WebMvcTest(controllers = HelloController.class) // spring MVC에 집중하는 annotation, @Controller 관련 어노테이션 사용가능
 public class HelloControllerTest {
