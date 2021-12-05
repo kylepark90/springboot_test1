@@ -1,6 +1,8 @@
 package com.example.springboot_test1.domain.posts;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import java.util.List;
 
 /*
     JPA repository 는 Mybatis Dao역활을 하는데 인터페이스를 생성한뒤에
@@ -11,4 +13,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface PostsRepository extends JpaRepository<Posts,Long>{
 
+    @Query("SELECT p FROM Posts p order by p.id DESC")  // JPA를 사용하지 않을 메소드는 이와같이 쿼리로 작성해도됨, 조회시에 querydsl, jooq, mybatis등을 이용할수도 있다.
+    List<Posts> findAllDesc();  // insert, update, delete 작업은 JPA로 하는것이 좋다.
 }
